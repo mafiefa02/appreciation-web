@@ -9,7 +9,9 @@ export default function Button(props) {
       >
         <p className={`text-${props.textColor} font-${props.fontWeight}`}>
           <Link href={props.link}>
-            <a className={"font-bold"}>{props.content}</a>
+            <a className={`font-bold text-${props.textColor}`}>
+              {props.content}
+            </a>
           </Link>
         </p>
       </button>
