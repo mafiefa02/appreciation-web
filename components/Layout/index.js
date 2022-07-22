@@ -5,12 +5,10 @@ import Container from "../Container";
 
 export default function Layout(props) {
   return (
-    <>
-      <Background>
-        <Navbar />
-        <Container>{props.children}</Container>
-        <Footer />
-      </Background>
-    </>
+    <Background>
+      <Navbar />
+      <Container>{props.children}</Container>
+      <Footer />
+    </Background>
   );
 }
