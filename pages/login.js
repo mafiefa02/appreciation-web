@@ -2,7 +2,34 @@ import Head from "next/head";
 import Form from "../components/Form";
 import Button from "../components/Button";
 
-export default function Login() {
+import { useState } from "react";
+
+import { prisma } from "../db.ts";
+
+export default function Login({ dataPost, dataUser }) {
+  const [nim, setNIM] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleNimChange = (event) => {
+    setNIM(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const checkLogin = (user) => {
+    if (user.password === password && user.nim === nim) {
+      sessionStorage.setItem("loggedInUser", user.nim);
+      alert(`Pengguna ${user.nim} berhasil login!`);
+      return;
+    } else if (user.nim !== nim) {
+      alert("NIM anda tidak terdaftarkan!");
+    } else if (user.password !== password) {
+      alert("Password anda salah!");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -19,9 +46,7 @@ export default function Login() {
         label={"NIM TPB"}
         type={"text"}
         placeholder={"10121000"}
-        onChange={() => {
-          true;
-        }}
+        onChange={handleNimChange}
       />
       <Form
         divClass={"flex flex-col w-full justify-center items-center"}
@@ -29,12 +54,20 @@ export default function Login() {
         label={"Password"}
         type={"password"}
         placeholder={"Password"}
-        onChange={() => {
-          true;
-        }}
+        onChange={handlePasswordChange}
       />
       <Button
-        onClick={() => true}
+        onClick={() => {
+          dataPost.forEach((post) => {
+            console.log(post);
+          });
+
+          dataUser.forEach((user) => {
+            console.log(user);
+          });
+
+          dataUser.forEach(checkLogin);
+        }}
         className={"bg-neutral-800 hover:bg-neutral-700"}
         link={"/login"}
         content={"LOG IN"}
@@ -42,4 +75,21 @@ export default function Login() {
       />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const dataPost = await prisma.post.findMany();
+  const dataUser = await prisma.user.findMany();
+
+  for (const data of dataPost) {
+    data.createdAt = data.createdAt.toString();
+    data.updatedAt = data.updatedAt.toString();
+  }
+
+  return {
+    props: {
+      dataPost,
+      dataUser,
+    },
+  };
 }
