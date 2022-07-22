@@ -3,7 +3,7 @@ export default function Form(props) {
     <div className={props.divClass}>
       <label
         className="flex w-full max-w-lg justify-start text-white text-sm font-bold mb-2"
-        for={props.id}
+        htmlFor={props.id}
       >
         <>{props.label}</>
       </label>
