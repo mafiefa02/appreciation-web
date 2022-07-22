@@ -11,7 +11,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full justify-center items-center mb-8">
-        <h1 className={"text-5xl font-bold"}>LOG IN</h1>
+        <h1 className={"text-5xl font-bold text-white"}>LOG IN</h1>
       </div>
       <Form
         divClass={"flex flex-col w-full justify-center items-center"}
@@ -38,6 +38,7 @@ export default function Login() {
         className={"bg-neutral-800 hover:bg-neutral-700"}
         link={"/login"}
         content={"LOG IN"}
+        textColor={"white"}
       />
     </>
   );
