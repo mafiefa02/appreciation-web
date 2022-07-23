@@ -32,17 +32,22 @@ export default function Login({ dataUser }) {
   };
 
   const checkLogin = (users, nimInput, passwordInput) => {
+    let handled = false;
     if (loggedIn === false) {
       users.forEach((user) => {
         console.log(nimInput, passwordInput, user);
         if (user.nim === nimInput && user.password === passwordInput) {
           handleLogin(JSON.stringify(user));
+          handled = true;
           console.log("handled");
-        } else {
-          console.log("error");
-          console.log(user);
         }
       });
+
+      if (handled) {
+        return;
+      } else {
+        alert("Data tidak ditemukan!");
+      }
     } else {
       alert("already logged in!");
     }
