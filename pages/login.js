@@ -91,7 +91,7 @@ export default function Login({ dataUser }) {
         divClass={"flex flex-col w-full justify-center items-center"}
         id={"password"}
         label={"Password"}
-        type={"text"}
+        type={"password"}
         placeholder={"Password"}
         onChange={handlePasswordChange}
       />
