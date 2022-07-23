@@ -8,11 +8,7 @@ export default function Button(props) {
         onClick={props.onClick}
       >
         <p className={`text-${props.textColor} font-${props.fontWeight}`}>
-          <Link href={props.link}>
-            <a className={`font-bold text-${props.textColor}`}>
-              {props.content}
-            </a>
-          </Link>
+          {props.content}
         </p>
       </button>
     </>

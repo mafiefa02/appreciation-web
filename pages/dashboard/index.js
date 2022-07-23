@@ -1,25 +1,56 @@
 // pass data dari login ke router query, terus pass lagi ke sini atau bisa pakai
 // session atau local storage.
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { prisma } from "../../db.ts";
 
 export default function Dashboard({ posts }) {
   const router = useRouter();
-  const user = JSON.parse(router.query.userLoggedIn);
+  console.log(router.query.user);
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const { user } = router.query;
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, [router]);
 
   const checkPost = (post) => {
-    if (user.id === post.targetId) {
-      return post;
-    }
+    return user.id === post.targetId;
   };
 
   const post = posts.find(checkPost);
+  console.log(post);
 
+  if (post) {
+    return (
+      <>
+        <h1>{`Hello ${user.firstName}`}</h1>
+        <h1>{`Post title ${post.postTitle}`}</h1>
+      </>
+    );
+  }
+
+  // const checkPost = (post) => {
+  //   return user.id === post.targetId;
+  // };
+
+  // const post = posts.find(checkPost);
+  // console.log(post);
+
+  // if (post) {
+  //   return (
+  //     <>
+  //       <h1>{`Hello ${user.firstName}`}</h1>
+  //       <h2>{`POST title: ${post.postTitle}`}</h2>
+  //     </>
+  //   );
+  // } else {
   return (
     <>
-      <h1>{`Hello, ${user.firstName} ${user.lastName}`}</h1>
-      <p>{`post title: ${post.postTitle}`}</p>
-      <p>{`post content: ${post.content}`}</p>
+      <h1>{`Tidak ada post untuk ${user.firstName}`}</h1>
     </>
   );
 }

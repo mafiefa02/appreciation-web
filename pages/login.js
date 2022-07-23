@@ -8,8 +8,15 @@ import { prisma } from "../db.ts";
 import Router, { useRouter } from "next/router";
 
 export default function Login({ dataUser }) {
+  const users = dataUser;
+  useEffect(() => {
+    console.log(users);
+  }, []);
   const [nim, setNIM] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   const handleNimChange = (event) => {
     setNIM(event.target.value);
@@ -19,24 +26,43 @@ export default function Login({ dataUser }) {
     setPassword(event.target.value);
   };
 
-  const checkLogin = (user) => {
-    if (user.password === password && user.nim === nim) {
-      Router.push({
-        pathname: "/dashboard",
-        query: { userLoggedIn: JSON.stringify(user) },
+  const handleLogin = (user) => {
+    setLoggedIn(!loggedIn);
+    setLoggedInUser(user);
+  };
+
+  const checkLogin = (users, nimInput, passwordInput) => {
+    if (loggedIn === false) {
+      users.forEach((user) => {
+        console.log(nimInput, passwordInput, user);
+        if (user.nim === nimInput && user.password === passwordInput) {
+          handleLogin(JSON.stringify(user));
+          console.log("handled");
+        } else {
+          console.log("error");
+          console.log(user);
+        }
       });
-      // localStorage.setItem("loggedInUser", JSON.stringify(user));
-      // console.log(JSON.parse(localStorage.loggedInUser));
-      // Router.push({
-      //   pathname: "/dashboard",
-      //   query: { userLoggedIn: localStorage.getItem("loggedInUser") },
-      // });
-    } else if (user.nim !== nim) {
-      alert("NIM anda tidak terdaftarkan!");
-    } else if (user.password !== password) {
-      alert("Password anda salah!");
+    } else {
+      alert("already logged in!");
     }
   };
+
+  useEffect(() => {
+    if (loggedIn) {
+      console.log(loggedInUser);
+      console.log("routing...");
+      if (!loggedInUser) {
+        console.log(loggedInUser);
+        return;
+      } else {
+        Router.push({
+          pathname: "/dashboard",
+          query: { user: loggedInUser.trim() },
+        });
+      }
+    }
+  }, [loggedIn]);
 
   return (
     <>
@@ -60,26 +86,19 @@ export default function Login({ dataUser }) {
         divClass={"flex flex-col w-full justify-center items-center"}
         id={"password"}
         label={"Password"}
-        type={"password"}
+        type={"text"}
         placeholder={"Password"}
         onChange={handlePasswordChange}
       />
       <Button
-        onClick={() => {
-          dataUser.forEach((user) => {
-            console.log(user);
-          });
-          dataUser.forEach(checkLogin);
-        }}
+        onClick={() => checkLogin(users, nim, password)}
         className={"bg-neutral-800 hover:bg-neutral-700"}
-        link={"/login"}
         content={"LOG IN"}
         textColor={"white"}
       />
     </>
   );
 }
-
 export async function getStaticProps() {
   const dataUser = await prisma.user.findMany();
 
