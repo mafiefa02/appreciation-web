@@ -2,11 +2,12 @@ import Head from "next/head";
 import Form from "../components/Form";
 import Button from "../components/Button";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { prisma } from "../db.ts";
+import Router, { useRouter } from "next/router";
 
-export default function Login({ dataPost, dataUser }) {
+export default function Login({ dataUser }) {
   const [nim, setNIM] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,9 +21,16 @@ export default function Login({ dataPost, dataUser }) {
 
   const checkLogin = (user) => {
     if (user.password === password && user.nim === nim) {
-      sessionStorage.setItem("loggedInUser", user.nim);
-      alert(`Pengguna ${user.nim} berhasil login!`);
-      return;
+      Router.push({
+        pathname: "/dashboard",
+        query: { userLoggedIn: JSON.stringify(user) },
+      });
+      // localStorage.setItem("loggedInUser", JSON.stringify(user));
+      // console.log(JSON.parse(localStorage.loggedInUser));
+      // Router.push({
+      //   pathname: "/dashboard",
+      //   query: { userLoggedIn: localStorage.getItem("loggedInUser") },
+      // });
     } else if (user.nim !== nim) {
       alert("NIM anda tidak terdaftarkan!");
     } else if (user.password !== password) {
@@ -58,14 +66,9 @@ export default function Login({ dataPost, dataUser }) {
       />
       <Button
         onClick={() => {
-          dataPost.forEach((post) => {
-            console.log(post);
-          });
-
           dataUser.forEach((user) => {
             console.log(user);
           });
-
           dataUser.forEach(checkLogin);
         }}
         className={"bg-neutral-800 hover:bg-neutral-700"}
@@ -78,17 +81,10 @@ export default function Login({ dataPost, dataUser }) {
 }
 
 export async function getStaticProps() {
-  const dataPost = await prisma.post.findMany();
   const dataUser = await prisma.user.findMany();
-
-  for (const data of dataPost) {
-    data.createdAt = data.createdAt.toString();
-    data.updatedAt = data.updatedAt.toString();
-  }
 
   return {
     props: {
-      dataPost,
       dataUser,
     },
   };
