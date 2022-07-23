@@ -1,6 +1,7 @@
 import Head from "next/head";
-import Form from "../components/Form";
 import Button from "../components/Button";
+
+import Router from "next/router";
 
 export default function Home() {
   return (
@@ -14,7 +15,11 @@ export default function Home() {
         <h1 className={"text-5xl font-bold text-white"}>HOME</h1>
       </div>
       <Button
-        onClick={() => true}
+        onClick={() =>
+          Router.replace({
+            pathname: "/login",
+          })
+        }
         className={"bg-neutral-800 hover:bg-neutral-700"}
         link={"/login"}
         textColor={"white"}
