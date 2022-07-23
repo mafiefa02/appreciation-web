@@ -1,5 +1,3 @@
-// pass data dari login ke router query, terus pass lagi ke sini atau bisa pakai
-// session atau local storage.
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { prisma } from "../../db.ts";
@@ -33,21 +31,6 @@ export default function Dashboard({ posts }) {
     );
   }
 
-  // const checkPost = (post) => {
-  //   return user.id === post.targetId;
-  // };
-
-  // const post = posts.find(checkPost);
-  // console.log(post);
-
-  // if (post) {
-  //   return (
-  //     <>
-  //       <h1>{`Hello ${user.firstName}`}</h1>
-  //       <h2>{`POST title: ${post.postTitle}`}</h2>
-  //     </>
-  //   );
-  // } else {
   return (
     <>
       <h1>{`Tidak ada post untuk ${user.firstName}`}</h1>

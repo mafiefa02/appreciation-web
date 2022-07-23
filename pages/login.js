@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import { useState, useEffect } from "react";
 
 import { prisma } from "../db.ts";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 
 export default function Login({ dataUser }) {
   const users = dataUser;
