@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full justify-center items-center">
-        <h1 className={"text-5xl font-bold text-white"}>HOME</h1>
+        <h1 className={"text-5xl font-bold text-background"}>HOME</h1>
       </div>
       <Button
         onClick={() =>
@@ -20,9 +20,7 @@ export default function Home() {
             pathname: "/login",
           })
         }
-        className={"bg-neutral-800 hover:bg-neutral-700"}
-        link={"/login"}
-        textColor={"white"}
+        textColor={"background"}
         content={"LOGIN"}
       />
     </>

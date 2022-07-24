@@ -8,12 +8,16 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   mode: "jit",
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: "#ef4f4f",
-        secondary: "#74c7b8",
-        tertiary: "#ffcda3",
+        primary: {
+          light: "#fdb851",
+          default: "#f89233",
+          dark: "#9b4e06",
+        },
+        background: "#20335f",
         transparent: "transparent",
         slate: colors.slate,
         gray: colors.gray,

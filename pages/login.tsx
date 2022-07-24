@@ -9,9 +9,11 @@ import Router from "next/router";
 
 export default function Login({ dataUser }) {
   const users = dataUser;
+
   useEffect(() => {
     console.log(users);
-  }, []);
+  }, [users]);
+
   const [nim, setNIM] = useState("");
   const [password, setPassword] = useState("");
 
@@ -37,7 +39,9 @@ export default function Login({ dataUser }) {
       users.forEach((user) => {
         console.log(nimInput, passwordInput, user);
         if (user.nim === nimInput && user.password === passwordInput) {
-          handleLogin(JSON.stringify(user));
+          let userCopy = user;
+          delete userCopy.password;
+          handleLogin(JSON.stringify(userCopy));
           handled = true;
           console.log("handled");
         }
@@ -49,7 +53,7 @@ export default function Login({ dataUser }) {
         alert("Data tidak ditemukan!");
       }
     } else {
-      alert("already logged in!");
+      alert("Already logged in!");
     }
   };
 
@@ -67,7 +71,7 @@ export default function Login({ dataUser }) {
         });
       }
     }
-  }, [loggedIn]);
+  }, [loggedIn, loggedInUser]);
 
   return (
     <>
@@ -77,7 +81,7 @@ export default function Login({ dataUser }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full justify-center items-center mb-8">
-        <h1 className={"text-5xl font-bold text-white"}>LOG IN</h1>
+        <h1 className={"text-5xl font-bold text-background"}>LOG IN</h1>
       </div>
       <Form
         divClass={"flex flex-col w-full justify-center items-center"}
@@ -97,9 +101,8 @@ export default function Login({ dataUser }) {
       />
       <Button
         onClick={() => checkLogin(users, nim, password)}
-        className={"bg-neutral-800 hover:bg-neutral-700"}
         content={"LOG IN"}
-        textColor={"white"}
+        textColor={"background"}
       />
     </>
   );
