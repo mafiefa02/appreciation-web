@@ -2,12 +2,16 @@ import Head from "next/head";
 import Form from "../components/Form";
 import Button from "../components/Button";
 
+import { NextPage } from "next";
+
+import { User, Post } from "../types"
+
 import { useState, useEffect } from "react";
 
-import { prisma } from "../db.ts";
+import { prisma } from "../db";
 import Router from "next/router";
 
-export default function Login({ dataUser }) {
+const Login: NextPage<Array<User>> = (dataUser) => {
   const users = dataUser;
 
   useEffect(() => {
@@ -20,20 +24,20 @@ export default function Login({ dataUser }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState("");
 
-  const handleNimChange = (event) => {
+  const handleNimChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNIM(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = (user) => {
+  const handleLogin = (user: string) => {
     setLoggedIn(!loggedIn);
     setLoggedInUser(user);
   };
 
-  const checkLogin = (users, nimInput, passwordInput) => {
+  const checkLogin = (users: Array<User>, nimInput: string, passwordInput: string) => {
     let handled = false;
     if (loggedIn === false) {
       users.forEach((user) => {

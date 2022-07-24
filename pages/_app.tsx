@@ -1,8 +1,9 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 import { ThemeProvider } from "next-themes";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <ThemeProvider attribute="class">
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         </Layout>
       </ThemeProvider>
       <style jsx global>{`
-        ${"body {background: #fff}"}
+        ${"body {background: #ffffff}"}
       `}</style>
     </>
   );

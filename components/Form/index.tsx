@@ -2,7 +2,7 @@ import { ChangeEventHandler } from "react";
 
 interface FormProps {
   divClass?: string,
-  children: React.ReactNode,
+  children?: React.ReactNode,
   id: string,
   label: string,
   type: string,
