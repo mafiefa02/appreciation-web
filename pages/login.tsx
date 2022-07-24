@@ -1,15 +1,18 @@
+// components
 import Head from "next/head";
 import Form from "../components/Form";
 import Button from "../components/Button";
-
 import { NextPage } from "next";
 
-import { User, Post } from "../types"
+// types
+import { User } from "../types"
 
+// hooks
+import Router from "next/router";
 import { useState, useEffect } from "react";
 
+// database
 import { prisma } from "../db";
-import Router from "next/router";
 
 const Login: NextPage<Array<User>> = (dataUser) => {
   const users = dataUser;
@@ -111,6 +114,9 @@ const Login: NextPage<Array<User>> = (dataUser) => {
     </>
   );
 }
+
+export default Login;
+
 export async function getStaticProps() {
   const dataUser = await prisma.user.findMany();
 
