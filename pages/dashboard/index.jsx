@@ -1,13 +1,16 @@
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { prisma } from "../../db.ts";
 
-export default function Dashboard({ posts }) {
-  const postsData = posts;
+import { prisma } from "../../db";
+
+import { User, Post } from "../../types";
+
+const Dashboard = (posts) => {
   const router = useRouter();
   console.log(router.query.user);
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     const { user } = router.query;
@@ -43,7 +46,9 @@ export default function Dashboard({ posts }) {
       </article>
     </>
   );
-}
+};
+
+export default Dashboard;
 
 export async function getStaticProps() {
   const posts = await prisma.post.findMany();

@@ -1,9 +1,4 @@
-interface CardProps {
-  children: React.ReactNode;
-  bg: string
-}
-
-export default function Card(props: CardProps) {
+export default function Card(props) {
   return (
     <>
       <div

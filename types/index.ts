@@ -13,8 +13,8 @@ export interface User {
 export interface Post {
   id: string;
   target: User;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   targetId: string;
   content: string;
   postTitle: string;

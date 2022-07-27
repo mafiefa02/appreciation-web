@@ -1,9 +1,8 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 import { ThemeProvider } from "next-themes";
-import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider attribute="class">

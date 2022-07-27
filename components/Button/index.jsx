@@ -1,14 +1,6 @@
 import { MouseEventHandler } from "react";
 
-interface ButtonProps {
-  children?: React.ReactNode;
-  className?: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  textColor?: string;
-  content: string;
-}
-
-export default function Button(props: ButtonProps) {
+export default function Button(props) {
   return (
     <>
       <button

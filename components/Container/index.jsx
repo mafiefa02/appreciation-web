@@ -1,8 +1,4 @@
-interface ContainerProps {
-  children: React.ReactNode;
-}
-
-export default function Container(props: ContainerProps) {
+export default function Container(props) {
   return (
     <>
       <div

@@ -1,16 +1,6 @@
 import { ChangeEventHandler } from "react";
 
-interface FormProps {
-  divClass?: string,
-  children?: React.ReactNode,
-  id: string,
-  label: string,
-  type: string,
-  placeholder: string,
-  onChange: ChangeEventHandler<HTMLInputElement>
-}
-
-export default function Form(props: FormProps) {
+export default function Form(props) {
   return (
     <div className={props.divClass}>
       <label
