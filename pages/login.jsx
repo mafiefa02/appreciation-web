@@ -10,13 +10,11 @@ import { useState, useEffect } from "react";
 // database
 import { prisma } from "../db";
 
-const Login = (dataUser) => {
+export default function Login({ dataUser }) {
   const users = dataUser;
-
   useEffect(() => {
     console.log(users);
   }, [users]);
-
   const [nim, setNIM] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,9 +40,7 @@ const Login = (dataUser) => {
       users.forEach((user) => {
         console.log(nimInput, passwordInput, user);
         if (user.nim === nimInput && user.password === passwordInput) {
-          let userCopy = user;
-          delete userCopy.password;
-          handleLogin(JSON.stringify(userCopy));
+          handleLogin(JSON.stringify(user));
           handled = true;
           console.log("handled");
         }
@@ -56,7 +52,7 @@ const Login = (dataUser) => {
         alert("Data tidak ditemukan!");
       }
     } else {
-      alert("Already logged in!");
+      alert("already logged in!");
     }
   };
 
@@ -109,9 +105,7 @@ const Login = (dataUser) => {
       />
     </>
   );
-};
-
-export default Login;
+}
 
 export async function getStaticProps() {
   const dataUser = await prisma.user.findMany();

@@ -1,6 +1,6 @@
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import Container from "../Container/index.j";
+import Container from "../Container/index.jsx";
 
 export default function Layout(props) {
   return (

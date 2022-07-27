@@ -2,11 +2,9 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { prisma } from "../../db";
+import { prisma } from "../../db.ts";
 
-import { User, Post } from "../../types";
-
-const Dashboard = (posts) => {
+const Dashboard = ({ posts }) => {
   const router = useRouter();
   console.log(router.query.user);
 
