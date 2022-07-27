@@ -8,7 +8,7 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 
 // database
-import { prisma } from "../db";
+import { prisma } from "../db.ts";
 
 export default function Login({ dataUser }) {
   const users = dataUser;
