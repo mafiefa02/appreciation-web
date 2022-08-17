@@ -29,7 +29,7 @@ const Dashboard = ({ posts }) => {
         <h4>
           untuk {user.firstName} {user.lastName}
         </h4>
-        <p>{post.content}</p>
+        <p dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
     );
   }
