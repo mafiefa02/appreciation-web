@@ -1,17 +1,20 @@
+// components
 import Head from "next/head";
 import Form from "../components/Form";
 import Button from "../components/Button";
 
+// hooks
+import Router from "next/router";
 import { useState, useEffect } from "react";
 
+// database
 import { prisma } from "../db.ts";
-import Router from "next/router";
 
 export default function Login({ dataUser }) {
   const users = dataUser;
   useEffect(() => {
     console.log(users);
-  }, []);
+  }, [users]);
   const [nim, setNIM] = useState("");
   const [password, setPassword] = useState("");
 
@@ -67,7 +70,7 @@ export default function Login({ dataUser }) {
         });
       }
     }
-  }, [loggedIn]);
+  }, [loggedIn, loggedInUser]);
 
   return (
     <>
@@ -77,7 +80,7 @@ export default function Login({ dataUser }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full justify-center items-center mb-8">
-        <h1 className={"text-5xl font-bold text-white"}>LOG IN</h1>
+        <h1 className={"text-5xl font-bold text-background"}>LOG IN</h1>
       </div>
       <Form
         divClass={"flex flex-col w-full justify-center items-center"}
@@ -91,19 +94,19 @@ export default function Login({ dataUser }) {
         divClass={"flex flex-col w-full justify-center items-center"}
         id={"password"}
         label={"Password"}
-        type={"text"}
+        type={"password"}
         placeholder={"Password"}
         onChange={handlePasswordChange}
       />
       <Button
         onClick={() => checkLogin(users, nim, password)}
-        className={"bg-neutral-800 hover:bg-neutral-700"}
         content={"LOG IN"}
-        textColor={"white"}
+        textColor={"background"}
       />
     </>
   );
 }
+
 export async function getStaticProps() {
   const dataUser = await prisma.user.findMany();
 
