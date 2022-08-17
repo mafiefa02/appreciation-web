@@ -3,17 +3,42 @@ import Image from "next/image";
 // import { useEffect, useState } from "react";
 // import prisma from "../../db.ts";
 
-export default function Navbar() {
+export default function Navbar({ loggedIn }) {
+  if (!loggedIn) {
+    return (
+      <>
+        <div className="fixed top-0 w-full flex flex-row justify-start items-center gap-5 p-5 bg-background text-white z-[99]">
+          <Image src="/logo.png" alt="logo" width={35} height={35} />
+          <Link href={"/"}>
+            <a className="font-bold tracking-wide">BPA FMIPA&apos;21 ITB</a>
+          </Link>
+        </div>
+      </>
+    );
+  }
   return (
     <>
-      <div className="absolute top-0 w-full flex flex-row justify-start items-center gap-5 p-5 bg-background text-white z-[99]">
-        <Image src="/logo.png" alt="logo" width={35} height={35} />
+      <div className="fixed top-0 w-full flex flex-row justify-between items-center p-5 bg-background text-white z-[99]">
+        <div className="flex flex-row items-center gap-5">
+          <Image src="/logo.png" alt="logo" width={35} height={35} />
+          <p className="font-bold tracking-wide">BPA FMIPA&apos;21 ITB</p>
+        </div>
         <Link href={"/"}>
-          <a className="font-bold tracking-wide">BPA FMIPA&apos;21 ITB</a>
+          <a className="font-bold tracking-wide">LOG OUT</a>
         </Link>
       </div>
     </>
   );
+  // return (
+  //   <>
+  //     <div className="absolute top-0 w-full flex flex-row justify-start items-center gap-5 p-5 bg-background text-white z-[99]">
+  //       <Image src="/logo.png" alt="logo" width={35} height={35} />
+  //       <Link href={"/"}>
+  //         <a className="font-bold tracking-wide">BPA FMIPA&apos;21 ITB</a>
+  //       </Link>
+  //     </div>
+  //   </>
+  // );
 }
 // const [userLoggedIn, setUserLoggedIn] = useState({});
 // console.log(dataUser);
