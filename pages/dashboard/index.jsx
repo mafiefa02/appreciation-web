@@ -59,7 +59,7 @@ const Dashboard = ({ posts }) => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <article className="prose text-center dark:prose-invert prose-headings:uppercase prose-p:text-justify prose-p:leading-loose prose-p:text-background prose-headings:text-background xl:prose-lg sm:prose-sm prose-base lg:prose-lg">
+        <article className="prose text-center dark:prose-invert prose-headings:uppercase prose-p:text-justify prose-p:leading-loose prose-p:text-background prose-headings:text-background xl:prose-lg prose-sm lg:prose-lg">
           <h1>Tidak ada pesan untuk</h1>
           <UserProfile
             className={`w-[200px]`}
