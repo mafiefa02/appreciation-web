@@ -15,6 +15,7 @@ const UserProfile = ({ user, className, position }) => {
           src={user.avatar ? user.avatar : userAvatar}
           className={`pointer-events-none`}
           alt={"user avatar"}
+          loading="lazy"
         />
       </div>
       <div
