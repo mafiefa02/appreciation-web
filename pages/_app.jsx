@@ -6,9 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider attribute="class">
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </ThemeProvider>
       <style jsx global>{`
         ${"body {background: #ffffff}"}
