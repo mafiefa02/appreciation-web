@@ -31,7 +31,6 @@ const UserProfile = ({ user, className, position }) => {
             {user.bidang ? user.bidang : "Budi"}
           </p>
           <p className={`sm:text-[13px] text-xs text-center`}>
-            {user.jabatan ? user.jabatan : "Budi"}{" "}
             {user.divisi ? user.divisi : null}
           </p>
         </div>
