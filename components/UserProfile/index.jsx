@@ -27,11 +27,11 @@ const UserProfile = ({ user, className, position }) => {
           {user.lastName ? user.lastName : "Budi"}
         </p>
         <div className="flex flex-col items-center justify-center gap-[0.4em]">
-          <p className={`sm:text-lg text-sm text-center`}>
+          <p className={`text-[15px] sm:text-[17px] text-center`}>
             {user.bidang ? user.bidang : "Budi"}
           </p>
-          <p className={`sm:text-[13px] text-xs text-center`}>
-            {user.divisi ? user.divisi : null}
+          <p className={`text-[14px] sm:text-[16px] text-center`}>
+            Divisi {user.divisi ? user.divisi : null}
           </p>
         </div>
       </div>
