@@ -65,7 +65,7 @@ export default function Login({ dataUser }) {
         console.log(loggedInUser);
         return;
       } else {
-        Router.push({
+        Router.replace({
           pathname: "/dashboard",
           query: { user: loggedInUser.trim() },
         });
