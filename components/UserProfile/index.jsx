@@ -20,15 +20,17 @@ const UserProfile = ({ user, className, position }) => {
       <div
         className={`flex flex-col items-center justify-center gap-2 text-background`}
       >
-        <p className={`sm:text-4xl text-xl font-extrabold capitalize`}>
+        <p
+          className={`sm:text-4xl text-xl font-extrabold capitalize text-center`}
+        >
           {user.firstName ? user.firstName : "Budi"}{" "}
           {user.lastName ? user.lastName : "Budi"}
         </p>
-        <div className="flex flex-col items-center justify-center gap-1">
-          <p className={`sm:text-lg text-sm`}>
+        <div className="flex flex-col items-center justify-center gap-[0.4em]">
+          <p className={`sm:text-lg text-sm text-center`}>
             {user.bidang ? user.bidang : "Budi"}
           </p>
-          <p className={`sm:text-lg text-sm`}>
+          <p className={`sm:text-[13px] text-xs text-center`}>
             {user.jabatan ? user.jabatan : "Budi"}{" "}
             {user.divisi ? user.divisi : null}
           </p>
