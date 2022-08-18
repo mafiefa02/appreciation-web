@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import getRawDrive from "../../lib/getRawDrive.ts";
 
 import userAvatar from "../../public/userAvatar.png";
 
@@ -10,9 +11,13 @@ const UserProfile = ({ user, className, position }) => {
         position ? position : "start"
       }`}
     >
-      <div className={`${className} rounded-full overflow-hidden object-cover`}>
+      <div
+        className={`${className} rounded-full overflow-hidden object-contain`}
+      >
         <Image
-          src={user.avatar ? user.avatar : userAvatar}
+          src={user.avatar ? getRawDrive(user.avatar) : userAvatar}
+          width={200}
+          height={200}
           className={`pointer-events-none`}
           alt={"user avatar"}
           loading="lazy"
