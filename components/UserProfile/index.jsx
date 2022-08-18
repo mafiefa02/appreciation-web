@@ -31,7 +31,7 @@ const UserProfile = ({ user, className, position }) => {
             {user.bidang ? user.bidang : "Budi"}
           </p>
           <p className={`text-[14px] sm:text-[16px] text-center`}>
-            Divisi {user.divisi ? user.divisi : null}
+            {user.divisi ? `Divisi ${user.divisi}` : null}
           </p>
         </div>
       </div>
