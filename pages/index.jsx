@@ -1,5 +1,8 @@
 import Head from "next/head";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
+
+import { useState } from "react";
 
 import Router from "next/router";
 import Layout from "../components/Layout";
@@ -17,7 +20,7 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="flex w-full justify-center items-center">
-          <h1 className={"text-5xl font-bold text-background"}>HOME</h1>
+          <h1 className={"text-5xl font-bold text-background"}>PROGENTIVA</h1>
         </div>
         <Button
           onClick={() =>
