@@ -1,13 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
-const VStock = (props) => {
+const VStock = ({ className, src }) => {
   return (
     <div>
       <Image
-        className={`${props.className} pointer-events-none`}
-        src={props.src}
+        className={`${className} pointer-events-none`}
+        src={src}
         alt={"image"}
+        loading="lazy"
       />
     </div>
   );
